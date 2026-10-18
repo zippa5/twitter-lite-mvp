@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////data/social.db
+      SECRET_KEY: ${SECRET_KEY:-local-demo-only-change-before-public-deployment}
+    volumes:
+      - social_data:/data
+    restart: unless-stopped
+volumes:
+  social_data:
